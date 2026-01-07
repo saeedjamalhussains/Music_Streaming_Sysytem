@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: cicdproject-frontend:latest
+          image: imsjh18/cicdproject-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

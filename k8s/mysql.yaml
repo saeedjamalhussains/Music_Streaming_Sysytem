@@ -40,7 +40,7 @@ spec:
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: pass
+              value: admin
             - name: MYSQL_DATABASE
               value: tuneup
           ports:

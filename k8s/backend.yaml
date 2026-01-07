@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: cicdproject-backend:latest
+          image: imsjh18/cicdproject-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5050
@@ -37,4 +37,4 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
-              value: pass
+              value: admin
