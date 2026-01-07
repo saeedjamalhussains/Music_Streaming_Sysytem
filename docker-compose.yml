@@ -4,7 +4,7 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: tuneup
     ports:
       - "3306:3306"
@@ -20,11 +20,11 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/tuneup
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: pass
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
     depends_on:
       - db
     ports:
-      - "5050:5050"   # host:container → backend on 5050
+      - "5050:5050" # host:container → backend on 5050
     networks:
       - app-network
 
@@ -33,7 +33,7 @@ services:
     container_name: frontend_service
     restart: always
     ports:
-      - "3001:80"   # host:container → frontend on 3001
+      - "3001:80" # host:container → frontend on 3001
     depends_on:
       - backend
     networks:
