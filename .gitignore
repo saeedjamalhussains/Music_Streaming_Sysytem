@@ -1,0 +1,21 @@
+# Node
+node_modules/
+dist/
+
+# Java / Maven
+target/
+*.jar
+*.war
+*.ear
+
+# Python/Java temp files
+__pycache__/
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Docker
+.env

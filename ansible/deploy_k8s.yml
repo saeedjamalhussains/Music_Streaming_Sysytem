@@ -1,0 +1,51 @@
+---
+- name: Deploy Application to Kubernetes
+  hosts: local
+  connection: local
+  gather_facts: false
+
+  vars:
+    k8s_dir: "../k8s"
+
+  tasks:
+    - name: Delete existing MySQL Service if any
+      command: kubectl delete svc mysql --ignore-not-found
+      args:
+        chdir: "{{ k8s_dir }}"
+      ignore_errors: true
+
+    - name: Apply MySQL manifest
+      command: kubectl apply -f mysql.yaml
+      args:
+        chdir: "{{ k8s_dir }}"
+
+    - name: Delete existing Backend Service if any
+      command: kubectl delete svc backend --ignore-not-found
+      args:
+        chdir: "{{ k8s_dir }}"
+      ignore_errors: true
+
+    - name: Apply Backend manifest
+      command: kubectl apply -f backend.yaml
+      args:
+        chdir: "{{ k8s_dir }}"
+
+    - name: Delete existing Frontend Service if any
+      command: kubectl delete svc frontend --ignore-not-found
+      args:
+       chdir: "{{ k8s_dir }}"
+      ignore_errors: true
+
+    - name: Apply Frontend manifest
+      command: kubectl apply -f frontend.yaml
+      args:
+        chdir: "{{ k8s_dir }}"
+
+    - name: Verify Pods are running
+      command: kubectl get pods
+      register: pod_status
+      changed_when: false
+
+    - name: Show Pod status
+      debug:
+        var: pod_status.stdout_lines
