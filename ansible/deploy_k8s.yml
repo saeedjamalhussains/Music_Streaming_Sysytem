@@ -33,7 +33,7 @@
     - name: Delete existing Frontend Service if any
       command: kubectl delete svc frontend --ignore-not-found
       args:
-       chdir: "{{ k8s_dir }}"
+        chdir: "{{ k8s_dir }}"
       ignore_errors: true
 
     - name: Apply Frontend manifest
