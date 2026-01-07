@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/mohithsiddiraju/cicdproject.git'
+                git branch: 'main', url: 'https://github.com/saeedjamalhussains/Music_Streaming_Sysytem.git'
             }
         }
 
