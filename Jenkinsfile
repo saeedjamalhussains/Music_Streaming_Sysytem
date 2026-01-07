@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        MYSQL_ROOT_PASSWORD = credentials('mysql-root-password')
-        SPRING_DATASOURCE_PASSWORD = credentials('mysql-root-password')
+        MYSQL_ROOT_PASSWORD = credentials('admin')
+        SPRING_DATASOURCE_PASSWORD = credentials('admin')
     }
 
     stages {
