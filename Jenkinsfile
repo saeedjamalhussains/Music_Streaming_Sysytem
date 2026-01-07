@@ -15,25 +15,23 @@ pipeline {
 
         stage('Prepare .env') {
             steps {
-                sh '''
-                cat > .env <<EOF
-                MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-                MYSQL_DATABASE=tuneup
-                SPRING_DATASOURCE_USERNAME=root
-                SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD
-                SERVER_PORT=8080
-                EOF
-                '''
+                script {
+                    writeFile file: '.env', text: """
+MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+MYSQL_DATABASE=tuneup
+SPRING_DATASOURCE_USERNAME=root
+SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+SERVER_PORT=8080
+"""
+                }
             }
         }
 
                 stage('Build & Deploy') {
             steps {
-                sh '''
-                docker compose down -v || true
-                docker compose build
-                docker compose up -d
-                '''
+                bat 'docker compose down -v'
+                bat 'docker compose build'
+                bat 'docker compose up -d'
             }
         }
     }
