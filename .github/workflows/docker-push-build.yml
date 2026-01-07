@@ -2,7 +2,7 @@ name: Build and Push Frontend & Backend Images
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: imsjh18
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up Docker Buildx
@@ -30,8 +30,8 @@ jobs:
           file: ./frontend/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/cicdproject-frontend:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/cicdproject-frontend:${{ github.sha }}
+            imsjh18/cicdproject-frontend:latest
+            imsjh18/cicdproject-frontend:${{ github.sha }}
 
       # Build & push BACKEND
       - name: Build and push backend image
@@ -41,5 +41,5 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/cicdproject-backend:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/cicdproject-backend:${{ github.sha }}
+            imsjh18/cicdproject-backend:latest
+            imsjh18/cicdproject-backend:${{ github.sha }}
